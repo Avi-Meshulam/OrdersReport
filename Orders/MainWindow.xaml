@@ -1,0 +1,58 @@
+﻿<Window x:Class="Orders.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Orders"
+        mc:Ignorable="d"
+        Title="Orders" Height="667.123" Width="1061.316"
+        WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <Style x:Key="CellRightAlign">
+            <Setter Property="Control.HorizontalAlignment" Value="Right" />
+        </Style>
+    </Window.Resources>
+    <Grid Margin="0,0,2,0">
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="220" Margin="10,10,0,0" VerticalAlignment="Top" Width="299">
+            <StackPanel HorizontalAlignment="Left" Height="200" VerticalAlignment="Top" Width="280" CanVerticallyScroll="True" Margin="8,9,0,0">
+                <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="Annual Report" HorizontalAlignment="Left" Height="24" VerticalAlignment="Top" FontSize="15" FontWeight="Bold"/>
+                <DataGrid x:Name="grdAnnualReport" ItemsSource="{Binding}" Width="280" Height="175" AutoGenerateColumns="False" Loaded="grdAnnualReport_Loaded" IsReadOnly="True" HorizontalAlignment="Left" VerticalAlignment="Top" VerticalGridLinesBrush="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" HorizontalGridLinesBrush="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" SelectionChanged="grdAnnualReport_SelectionChanged" TabIndex="1">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding Year}" Width="50" Header="Year"/>
+                        <DataGridTextColumn Binding="{Binding NumberOfOrders}" Width="120" Header="Number of Orders" ElementStyle="{StaticResource CellRightAlign}"/>
+                        <DataGridTextColumn Binding="{Binding TotalCost}" Width="*" Header="Total Cost" ElementStyle="{StaticResource CellRightAlign}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </StackPanel>
+        </Border>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="374" Margin="10,245,0,0" VerticalAlignment="Top" Width="495">
+            <StackPanel HorizontalAlignment="Left" Height="354" VerticalAlignment="Top" Width="473" Margin="9,9,0,0">
+                <TextBlock TextWrapping="Wrap" Text="Orders" HorizontalAlignment="Left" Height="24" VerticalAlignment="Top" FontSize="15" FontWeight="Bold"/>
+                <DataGrid x:Name="grdOrders" ItemsSource="{Binding}" Width="473" Height="328" AutoGenerateColumns="False" IsReadOnly="True" HorizontalAlignment="Left" VerticalAlignment="Top" VerticalGridLinesBrush="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" HorizontalGridLinesBrush="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" SelectionChanged="grdOrders_SelectionChanged" TabIndex="2">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding OrderID}" Width="60" Header="Order ID"/>
+                        <DataGridTextColumn Binding="{Binding OrderDate, StringFormat=\{0:dd/MM/yyyy\}}" Width="80" Header="Order Date"/>
+                        <DataGridTextColumn Binding="{Binding CustomerName}" Width="120" Header="Customer"/>
+                        <DataGridTextColumn Binding="{Binding EmployeeName}" Width="120" Header="Employee"/>
+                        <DataGridTextColumn Binding="{Binding TotalPrice}" Width="*" Header="Total Price" ElementStyle="{StaticResource CellRightAlign}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </StackPanel>
+        </Border>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="374" Margin="520,245,0,0" VerticalAlignment="Top" Width="518">
+            <StackPanel HorizontalAlignment="Left" Height="354" VerticalAlignment="Top" Width="498" Margin="9,9,0,0">
+                <TextBlock x:Name="textBlock_Copy1" TextWrapping="Wrap" Text="Order Items" HorizontalAlignment="Left" Height="24" VerticalAlignment="Top" FontSize="15" FontWeight="Bold"/>
+                <DataGrid x:Name="grdOrderItems" ItemsSource="{Binding}" Height="328" AutoGenerateColumns="False" IsReadOnly="True" VerticalAlignment="Top" VerticalGridLinesBrush="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" HorizontalGridLinesBrush="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" HorizontalAlignment="Left" Width="496" TabIndex="3">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding ProductID}" Width="70" Header="Product ID"/>
+                        <DataGridTextColumn Binding="{Binding ProductName}" Width="200" Header="Product Name"/>
+                        <DataGridTextColumn Binding="{Binding UnitPrice}" Width="70" Header="Unit Price" ElementStyle="{StaticResource CellRightAlign}"/>
+                        <DataGridTextColumn Binding="{Binding Quantity}" Width="60" Header="Quantity" ElementStyle="{StaticResource CellRightAlign}"/>
+                        <DataGridTextColumn Binding="{Binding LineTotal}" Width="*" Header="Line Total" ElementStyle="{StaticResource CellRightAlign}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </StackPanel>
+        </Border>
+        <Button x:Name="btnUpdateProduct" Content="Update Product" HorizontalAlignment="Left" Height="42" Margin="919,10,0,0" VerticalAlignment="Top" Width="119" FontSize="15" Click="btnUpdateProduct_Click" TabIndex="4" IsDefault="True"/>
+    </Grid>
+</Window>
